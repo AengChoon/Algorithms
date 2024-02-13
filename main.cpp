@@ -1,10 +1,14 @@
 #include <algorithm>
 
+#include "DataStructures/LinkedLists/SinglyLinkedList.h"
 #include "Sort/BubbleSort.h"
 #include "Sort/SelectionSort.h"
 
 int main()
 {
-    int c[] {5,4,3,2,1};
-    BubbleSort(std::begin(c), std::end(c));
+	{
+		SLinkedList<std::string> a;
+		a.AddFront("SADASD");
+		a.AddFront("sdasd");
+	}
 }
