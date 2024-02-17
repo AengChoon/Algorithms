@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 
 template<typename ElementType>
 class SLinkedList
@@ -18,7 +17,7 @@ public:
 	~SLinkedList();
 
 	[[nodiscard]] bool IsEmpty() const;
-	const ElementType& GetFront() const;
+	[[nodiscard]] const ElementType& GetFront() const;
 	void AddFront(const ElementType& InElement);
 	void RemoveFront();
 
@@ -56,16 +55,16 @@ const ElementType& SLinkedList<ElementType>::GetFront() const
 template <typename ElementType>
 void SLinkedList<ElementType>::AddFront(const ElementType& InElement)
 {
-	auto* NewNode = new SNode;
-	NewNode->Element = InElement;
-	NewNode->Next = Head;
-	Head = NewNode;
+	auto* NodeToAdd = new SNode;
+	NodeToAdd->Element = InElement;
+	NodeToAdd->Next = Head;
+	Head = NodeToAdd;
 }
 
 template <typename ElementType>
 void SLinkedList<ElementType>::RemoveFront()
 {
-	auto* OldNode = Head;
-	Head = OldNode->Next;
-	delete OldNode;
+	auto* NodeToRemove = Head;
+	Head = NodeToRemove->Next;
+	delete NodeToRemove;
 }

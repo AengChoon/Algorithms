@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 
 template<typename ElementType>
 class DLinkedList
@@ -19,8 +18,8 @@ public:
 	~DLinkedList();
 
 	[[nodiscard]] bool IsEmpty() const;
-	const ElementType& GetFront() const;
-	const ElementType& GetBack() const; 
+	[[nodiscard]] const ElementType& GetFront() const;
+	[[nodiscard]] const ElementType& GetBack() const; 
 	void AddFront(const ElementType& InElement);
 	void AddBack(const ElementType& InElement);
 	void RemoveFront();
@@ -101,12 +100,12 @@ void DLinkedList<ElementType>::RemoveBack()
 template <typename ElementType>
 void DLinkedList<ElementType>::Add(DNode* InNextNode, const ElementType& InElement)
 {
-	auto* NewNode = new DNode;
-	NewNode->Element = InElement;
-	NewNode->Next = InNextNode;
-	NewNode->Prev = InNextNode->Prev;
-	InNextNode->Prev->Next = NewNode;
-	InNextNode->Prev = NewNode;
+	auto* NodeToAdd = new DNode;
+	NodeToAdd->Element = InElement;
+	NodeToAdd->Next = InNextNode;
+	NodeToAdd->Prev = InNextNode->Prev;
+	InNextNode->Prev->Next = NodeToAdd;
+	InNextNode->Prev = NodeToAdd;
 }
 
 template <typename ElementType>
